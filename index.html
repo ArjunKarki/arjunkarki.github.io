@@ -127,9 +127,9 @@
             faceio.restartSession({});
           });
       }
-      function auth() {
+      function auth({}) {
         faceio
-          .authenticate()
+          .authenticate({ userConsent: true })
           .then((userData) => {
             sendMessageToRN(true, userData, 'Authenticated Successfully');
           })
