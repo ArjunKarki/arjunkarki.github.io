@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Sign-In or Enroll via Face Recognition</title>
+    <title>Face Setup</title>
     <style>
       /* Modal styles */
       .modal {
@@ -72,7 +72,6 @@
   </head>
 
   <body>
-    <h1>Facial setup test</h1>
     <div id="auth-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">Verification Required</div>
@@ -87,7 +86,10 @@
     <script src="https://cdn.faceio.net/fio.js"></script>
     <script type="text/javascript">
       // Instantiate fio.js with your application's Public ID
-      const faceio = new faceIO('fioa158a');
+      // Dynamic public id for staging and production
+      const urlParams = new URLSearchParams(window.location.search);
+      const faceioId = urlParams.get('faceioId');
+      const faceio = new faceIO(faceioId);
 
       //we get from rn component
       let name = '';
@@ -110,8 +112,8 @@
       function enroll() {
         faceio
           .enroll({
-            enrollIntroTimeout: 1,
             userConsent: true,
+            enrollIntroTimeout: 1,
             payload: {
               name,
             },
@@ -127,9 +129,9 @@
             faceio.restartSession({});
           });
       }
-      function auth({}) {
+      function auth() {
         faceio
-          .authenticate({ userConsent: true })
+          .authenticate()
           .then((userData) => {
             sendMessageToRN(true, userData, 'Authenticated Successfully');
           })
