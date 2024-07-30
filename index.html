@@ -82,9 +82,11 @@
         </div>
       </div>
     </div>
-    <h1>Testing</h1>
+    <h1>Testing face io</h1>
     <div id="faceio-modal"></div>
     <script src="https://cdn.faceio.net/fio.js"></script>
+    <button onclick="enroll()" id="faceio-button">Enroll</button>
+    <button onclick="auth()" id="auth-button">Auth</button>
     <script type="text/javascript">
       // Instantiate fio.js with your application's Public ID
       // Dynamic public id for staging and production
@@ -259,7 +261,9 @@
             sendMessageToRN(false, null, 'Another authentication or enrollment session is in progress');
             break;
           case fioErrCode.NETWORK_IO:
+            alert('Network error from server');
           default:
+            alert('Falil to connect from server due to error code: ' + errCode);
             sendMessageToRN(
               false,
               null,
