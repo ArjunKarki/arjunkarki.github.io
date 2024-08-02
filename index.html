@@ -23,10 +23,7 @@
           rnData = JSON.parse(event.data);
           name = rnData.name;
           if (rnData.recognitionType === 'enroll') {
-            enroll({
-              userConsent: true,
-              enrollIntroTimeout: 1,
-            });
+            enroll();
           } else if (rnData.recognitionType === 'auth') {
             auth();
           }
@@ -37,6 +34,8 @@
       function enroll() {
         faceio
           .enroll({
+            userConsent: true,
+            enrollIntroTimeout: 1,
             payload: {
               name,
             },
