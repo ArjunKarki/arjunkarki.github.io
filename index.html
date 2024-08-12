@@ -1,9 +1,11 @@
 <html>
   <head>
-    <title>Face Setup</title>
+    <title>Facial Setup</title>
   </head>
 
   <body>
+    <button onclick="enroll()" id="enroll">Enroll</button>
+    <button onclick="auth()" id="auth">Auth</button>
     <div id="faceio-modal"></div>
     <script src="https://cdn.faceio.net/fio.js"></script>
     <script type="text/javascript">
@@ -71,7 +73,8 @@
           data,
           message,
         };
-        window.ReactNativeWebView.postMessage(`${JSON.stringify(sendData)}`);
+        console.log(sendData);
+        // window.ReactNativeWebView.postMessage(`${JSON.stringify(sendData)}`);
       }
 
       function handleError(errCode) {
